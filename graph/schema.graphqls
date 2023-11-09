@@ -1,0 +1,34 @@
+# GraphQL schema example
+#
+# https://gqlgen.com/getting-started/
+
+type CompanySyncStatus {
+  companyId: String
+  dataPushed: Boolean
+  errorMessage: String
+  syncExceptionMessage: String
+  syncId: String
+  syncStatus: String
+  syncStatusCode: Int
+  syncUtc: String
+}
+
+type LatestSyncResult {
+    success: Boolean!
+    codatStatusCode: Int
+    errors: [String]
+    latestSync: CompanySyncStatus
+}
+
+type GetSyncResult {
+    success: Boolean!
+    codatStatusCode: Int
+    errors: [String]
+    sync: CompanySyncStatus
+}
+
+type Query {
+  latestSync(companyId:ID!): LatestSyncResult
+  getSync(companyId:ID!, syncId:ID!): GetSyncResult
+}
+
